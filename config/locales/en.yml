@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  errors:
+      issue_not_found: "Issue not found."
