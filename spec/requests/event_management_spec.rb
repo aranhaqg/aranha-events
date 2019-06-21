@@ -173,9 +173,10 @@ RSpec.describe "Events requests", :type => :request do
     before { post "/api/v1/issues/sync", params: webhook_params }
 
     it 'should find the issue at the database' do
-      issue = Issue.new(webhook_params[:issue])
-      issue.save!
-      expect(issue.id).to eq(webhook_params[:issue][:id])
+      Issue.new(webhook_params[:issue]).save!
+      issue = Issue.find webhook_params[:issue][:id] 
+
+      expect(issue).should_not be_nil
       
       #expect(issue.events.as_json).not_to be_empty
     end
