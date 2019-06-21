@@ -28,5 +28,4 @@ RSpec.describe "Issue requests", :type => :request do
       expect(response.body).to match(I18n.t('errors.issue_not_found'))
     end
   end
-
 end

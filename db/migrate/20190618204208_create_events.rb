@@ -6,7 +6,9 @@ class CreateEvents < ActiveRecord::Migration[5.2]
     	t.string :title_changed_from
     	t.string :body_changed_from
     	t.json :assignee
-    	t.json :label
+      t.json :label
+      t.json :repository, null: false
+    	t.json :sender, null: false
 
     	t.references :issue, foreign_key: true
       

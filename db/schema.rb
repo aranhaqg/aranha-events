@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_06_18_204208) do
     t.string "body_changed_from"
     t.json "assignee"
     t.json "label"
+    t.json "repository", null: false
+    t.json "sender", null: false
     t.bigint "issue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,17 +31,26 @@ ActiveRecord::Schema.define(version: 2019_06_18_204208) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.integer "github_id", null: false
+    t.string "url", null: false
+    t.string "repository_url", null: false
+    t.string "labels_url", null: false
+    t.string "comments_url", null: false
+    t.string "events_url", null: false
+    t.string "html_url", null: false
+    t.integer "node_id", null: false
     t.integer "number", null: false
     t.string "title", null: false
-    t.string "body"
-    t.integer "user_id", null: false
-    t.string "user_login", null: false
-    t.integer "repository_id", null: false
-    t.string "repository_full_name", null: false
+    t.json "user", null: false
+    t.json "labels"
     t.string "state", null: false
     t.boolean "locked", default: false, null: false
+    t.json "assignee"
+    t.json "assignees"
+    t.json "milestone"
+    t.json "comments"
     t.datetime "closed_at"
+    t.string "author_association"
+    t.string "body", default: "f", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

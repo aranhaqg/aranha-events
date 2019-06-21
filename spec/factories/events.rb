@@ -5,6 +5,8 @@ FactoryBot.define do
 		assignee {nil}
 		label {''}	
 		issue
+		repository {{id: 1, name: 'purchase_orders_challenge'}}
+		sender {{id: 1, login: 'aranhaqg'}}
 
 		trait :opened do
   	  action {'opened'}
