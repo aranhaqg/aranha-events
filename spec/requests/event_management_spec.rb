@@ -169,20 +169,29 @@ RSpec.describe "Events requests", :type => :request do
     } 
   } 
 
-  context 'when event occurs the issue and event should be persisted' do
-    before { post "/api/v1/issues/sync", params: webhook_params }
+  context 'when event occurs and the event is persisted' do
+    before { post "/api/v1/events/sync", params: webhook_params }
 
-    it 'should find the issue at the database' do
-      Issue.new(webhook_params[:issue]).save!
+    it 'should find issue and event related' do
       issue = Issue.find webhook_params[:issue][:id] 
-
+      expect(issue.events).should !be_nil
       expect(issue).should_not be_nil
-      
-      #expect(issue.events.as_json).not_to be_empty
     end
 
-    #it 'should find the event related to it' do 
-    #  expect(issue.events.as_json).not_to be_empty
-    #end
+    it 'should returns status code 200' do
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  context 'when event occurs and the event is not persisted' do
+    before { post "/api/v1/events/sync", params: webhook_params.except(:repository) }
+  
+    it 'should returns status code 422' do
+      expect(response).to have_http_status(422)
+    end
+
+    it 'should returns a event not saved message' do
+      expect(response.body).to match(I18n.t('errors.couldnt_save_event'))
+    end
   end
 end

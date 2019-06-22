@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	namespace :api, defaults: {format: :json} do
 		namespace :v1 do
 			get '/issues/:id/events', to: 'issues#events'
-			post '/issues/sync', to: 'issues#sync'
+			post '/events/sync', to: 'events#sync'
 		end
 	end
 end

@@ -13,7 +13,7 @@ class CreateIssues < ActiveRecord::Migration[5.2]
       t.json :user, null: false
       t.json :labels
       t.string :state, null: false
-      t.boolean :locked, null: false, default: false
+      t.boolean :locked, default: false
       t.json :assignee
       t.json :assignees
       t.json :milestone

@@ -108,7 +108,8 @@ pt-BR:
   messages:
     success: "Operação realizada com sucesso."
   errors:
-    issue_not_found: "Problema não encontrado."
+    issue_not_found: "Issue não encontrada."
+    couldnt_save_event: "Um erro ocorreu. Não foi possível salvar o Evento."
     messages:
       accepted: deve ser aceito
       blank: não pode ficar em branco

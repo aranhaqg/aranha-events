@@ -2,6 +2,7 @@ module Api
 	module V1	
 		class IssuesController < ApplicationController
 			rescue_from ActiveRecord::RecordNotFound, with: :handle_issue_not_found
+			
 			before_action :set_issue, only: [:events]
 			# GET /issues/sync
 			def sync
@@ -11,7 +12,7 @@ module Api
 			# GET /issues/:id/events
 			def events
 				#render json: @issue.events, status: :ok
-					render json: {message: :ok}, status: :ok
+				render json: {message: :ok}, status: :ok
 			end
 
 			private

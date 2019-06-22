@@ -43,14 +43,14 @@ ActiveRecord::Schema.define(version: 2019_06_18_204208) do
     t.json "user", null: false
     t.json "labels"
     t.string "state", null: false
-    t.boolean "locked", default: false, null: false
+    t.boolean "locked", default: false
     t.json "assignee"
     t.json "assignees"
     t.json "milestone"
     t.json "comments"
     t.datetime "closed_at"
     t.string "author_association"
-    t.string "body", default: "f", null: false
+    t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
