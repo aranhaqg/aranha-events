@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  errors:
+      issue_not_found: "Issue not found."
+      couldnt_save_event: "An error occur. Could not save the event."
