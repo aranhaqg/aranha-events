@@ -2,8 +2,6 @@
 
 Aranha Events is a Rails REST API to listen to Github Issue Events via webhooks, persist and expose then. An issue event is triggered when an issue is opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, or demilestoned.
 
-Available at https://aranha-events.herokuapp.com/api/v1/issues/1/events.
-
 This app uses:
 
 * Ruby version 2.5.1
@@ -12,6 +10,10 @@ This app uses:
 * Ngrok 2.3.29
 
 To run tests it was used RSpec, Factory Bot and Database Cleaner gems. For more details check [Gemfile](Gemfile).
+
+This app is published at Heroku and this repo has a webhook to issues events pointing to it (https://aranha-events.herokuapp.com/api/v1/events/sync). So, all issues updates here can be viewed there. 
+
+For example: https://aranha-events.herokuapp.com/api/v1/issues/459585348/events.  
 
 ## Entities
 ### Issue
