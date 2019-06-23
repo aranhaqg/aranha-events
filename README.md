@@ -1,8 +1,8 @@
-# Aranha Events API [![Build Status](https://travis-ci.org/aranhaqg/go_case_challenge.svg?branch=master)](https://travis-ci.org/aranhaqg/go_case_challenge)
+# Aranha Events API [![Build Status](https://travis-ci.com/aranhaqg/aranha-events.svg?branch=master)](https://travis-ci.com/aranhaqg/aranha-events)
 
 Aranha Events is a Rails REST API to listen to Github Issue Events via webhooks, persist and expose then. An issue event is triggered when an issue is opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, or demilestoned.
 
-Available at https://limitless-dusk-21363.herokuapp.com/.
+Available at https://aranha-events.herokuapp.com/api/v1/issues/1/events.
 
 This app uses:
 
