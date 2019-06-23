@@ -25,9 +25,8 @@ module Api
 			end
 
 			def event_params
-				params.except(:format,:controller,:issue,:event).merge!(issue_id: issue_params[:id]).permit!
+				params.require(:event).merge!(issue_id: issue_params[:id]).permit!
 			end
-
 		end
 	end
 end

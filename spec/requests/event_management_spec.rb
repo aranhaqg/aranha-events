@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe "Events requests", :type => :request do
   let(:webhook_params) { 
     {
-      "action": "opened",
       "issue": {
         "url": "https://api.github.com/repos/aranhaqg/purchase_orders_challenge/issues/1",
         "repository_url": "https://api.github.com/repos/aranhaqg/purchase_orders_challenge",
@@ -52,7 +51,9 @@ RSpec.describe "Events requests", :type => :request do
         "author_association": "OWNER",
         "body": ""
       },
-      "repository": {
+      "event": {
+        "action": "opened",
+        "repository": {
         "id": 131720917,
         "node_id": "MDEwOlJlcG9zaXRvcnkxMzE3MjA5MTc=",
         "name": "purchase_orders_challenge",
@@ -145,8 +146,8 @@ RSpec.describe "Events requests", :type => :request do
         "open_issues": 1,
         "watchers": 0,
         "default_branch": "master"
-      },
-      "sender": {
+        },
+        "sender": {
         "login": "aranhaqg",
         "id": 1275896,
         "node_id": "MDQ6VXNlcjEyNzU4OTY=",
@@ -165,11 +166,19 @@ RSpec.describe "Events requests", :type => :request do
         "received_events_url": "https://api.github.com/users/aranhaqg/received_events",
         "type": "User",
         "site_admin": false
+        }
       }
     } 
   } 
+  let(:wrong_params) { 
+    {
+      "issue": {id: 1}, 
+      "event": {id: 3} 
+    }
+  }
 
   context 'when event occurs and the event is persisted' do
+
     before { post "/api/v1/events/sync", params: webhook_params }
 
     it 'should find issue and event related' do
@@ -184,7 +193,7 @@ RSpec.describe "Events requests", :type => :request do
   end
 
   context 'when event occurs and the event is not persisted' do
-    before { post "/api/v1/events/sync", params: webhook_params.except(:repository) }
+    before { post "/api/v1/events/sync", params: wrong_params }
   
     it 'should returns status code 422' do
       expect(response).to have_http_status(422)
