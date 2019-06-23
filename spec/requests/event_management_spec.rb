@@ -174,8 +174,8 @@ RSpec.describe "Events requests", :type => :request do
 
     it 'should find issue and event related' do
       issue = Issue.find webhook_params[:issue][:id] 
-      expect(issue.events).should !be_nil
-      expect(issue).should_not be_nil
+      expect(issue).not_to be_nil
+      expect(issue.events.count).to eq(1)
     end
 
     it 'should returns status code 200' do

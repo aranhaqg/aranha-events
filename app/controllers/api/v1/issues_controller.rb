@@ -4,15 +4,10 @@ module Api
 			rescue_from ActiveRecord::RecordNotFound, with: :handle_issue_not_found
 			
 			before_action :set_issue, only: [:events]
-			# GET /issues/sync
-			def sync
-				render json: {message: :ok}, status: :ok
-			end
-
+			
 			# GET /issues/:id/events
 			def events
-				#render json: @issue.events, status: :ok
-				render json: {message: :ok}, status: :ok
+				render json: @issue.events, status: :ok
 			end
 
 			private

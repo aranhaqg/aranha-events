@@ -5,10 +5,11 @@ module Api
 
 			# POST /events/sync
 			def sync
-				Issue.where(id: issue_params[:id]).first_or_initialize do |issue|
+				Event.transaction do 
+					issue = Issue.where(id: issue_params[:id]).first_or_initialize
 				  issue.update! issue_params
 				  Event.new(event_params).save!
-				end
+			 	end
 				
 				render json: {message: :ok}, status: :ok
 			end
@@ -24,7 +25,7 @@ module Api
 			end
 
 			def event_params
-				params.except(:format,:controller,:issue).merge!(issue_id: issue_params[:id]).permit!
+				params.except(:format,:controller,:issue,:event).merge!(issue_id: issue_params[:id]).permit!
 			end
 
 		end
